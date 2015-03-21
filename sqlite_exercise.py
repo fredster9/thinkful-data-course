@@ -60,13 +60,23 @@ with con:
         SELECT name, state, year, warm_month, cold_month,average_high FROM cities INNER JOIN weather ON name = city;
     ''')
     combined_tables = cur.fetchall()
-    df = pd.DataFrame(combined_tables)
+    cols = [desc[0] for desc in cur.description]
+    #print cols
+    df = pd.DataFrame(combined_tables)    
+    #df2 = pd.DataFrame(combined_tables, columns = cols) # adds header 
+    
+    # using iterrrows
     city_list = []
     for row_index, row, in df.iterrows():
         if row[3] == 'July':
             city_list.append((row[0], row[1]))
+    print type(city_list)
     print "The cities that are warmest in July are: ", city_list
-            
     
+    # using pandas slice
+#    data = df2[['name', 'state']]
+#    print data
+#    print list(data)
+#    print df2.describe()
 
 print "Program done"

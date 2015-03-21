@@ -4,5 +4,5 @@ Created on Fri Mar 20 22:16:45 2015
 
 @author: fred
 """
-
-print "Hello World"
+me = "Fred"
+print "Hello World, my name is ", me

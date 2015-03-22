@@ -36,50 +36,55 @@ df['Tobacco'] = df['Tobacco'].astype(float)
 ## find mean, median, and mode
 ## DONE BY HAND
 
-def calc_mean(col_name, col_position):
-    i = 0
-    vals = []
-    for x in data_rows:
-        vals.append(float(x[col_position]))
-        i += 1
-    vals.sort()
-    
-#    #Mode    
-    vals_count = Counter(vals)
-    if len(vals_count.most_common()) > 1:
-        print col_name, "has multiple modes"
-    else:
-        mode = vals_count.most_common()
-        print "Mode %s: %r" % (col_name, mode)
+#def calc_mean(col_name, col_position):
+#    i = 0
+#    vals = []
+#    for x in data_rows:
+#        vals.append(float(x[col_position]))
+#        i += 1
+#    vals.sort()
+#    
+##    #Mode    
+#    vals_count = Counter(vals)
+#    if len(vals_count.most_common()) > 1:
+#        print col_name, "has multiple modes"
+#    else:
+#        mode = vals_count.most_common()
+#        print "Mode %s: %r" % (col_name, mode)
+##        
+##    # Median    
+#    off_pos_down = int((i/2) - .5)
+#    off_pos_up = int((i/2) + .5)
+#    off_pos_down_val = vals[off_pos_down]
+#    off_pos_up_val = vals[off_pos_up]    
+#    if i % 2 == 0:
+#        print "List is even number of vals"
+#        median = (off_pos_down_val + off_pos_up_val) / 2.0
 #        
-#    # Median    
-    off_pos_down = int((i/2) - .5)
-    off_pos_up = int((i/2) + .5)
-    off_pos_down_val = vals[off_pos_down]
-    off_pos_up_val = vals[off_pos_up]    
-    if i % 2 == 0:
-        print "List is even number of vals"
-        median = (off_pos_down_val + off_pos_up_val) / 2.0
-        
-    else:   
-        median = off_pos_up_val
-
-#        
-#    # Mean
-    print "Mean %s: %r" % (col_name, sum(vals)/i)    
-    print "Median %s: %r" % (col_name, median)
-
-calc_mean('Alcohol', 1)
-calc_mean('Tobacco', 2)
+#    else:   
+#        median = off_pos_up_val
+#
+##        
+##    # Mean
+#    print "Mean %s: %r" % (col_name, sum(vals)/i)    
+#    print "Median %s: %r" % (col_name, median)
+#
+#calc_mean('Alcohol', 1)
+#calc_mean('Tobacco', 2)
 
 ## find mean, median, and mode
 ## USING BUILT-IN FUNCTIONS
 
 #print "Alcohol Mean: ", df['Alcohol'].mean()
 #print "Alcohol Median: ", df['Alcohol'].median()
-#print "Alcohol Mode: ", stats.mode(df['Alcohol']) # if all occur equally stats will return lowest number
+print "Alcohol Mode: ", stats.mode(df['Alcohol']) # if all occur equally stats will return lowest number
 #
 #print "Tobacco Mean: ", df['Tobacco'].mean()
 #print "Tobacco Median: ", df['Tobacco'].median()
 #print "Tobacco Mode: ", stats.mode(df['Tobacco'])
+
+# Range
+val_range = max(df['Alcohol']) - min(df['Alcohol'])
+val_std = df['Alcohol'].std()
+val_var = df['Alcohol'].var()
 

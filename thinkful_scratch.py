@@ -3,6 +3,7 @@ import logging
 import collections
 import csv
 import pandas as pd
+import sqlite3 as lite
 
 # actors = {
 #     "Kyle MacLachlan": "Dale Cooper",
@@ -244,6 +245,24 @@ import pandas as pd
 #    for line in inputReader:
 #        print len(line)
 
-input_dataframe = pd.read_csv('/Users/fred/Downloads/lecz-urban-rural-population-land-area-estimates-v2-csv/lecz-urban-rural-population-land-area-estimates_continent-90m.csv')
-print input_dataframe['Continent']
-print input_dataframe[0:10]
+#input_dataframe = pd.read_csv('/Users/fred/Downloads/lecz-urban-rural-population-land-area-estimates-v2-csv/lecz-urban-rural-population-land-area-estimates_continent-90m.csv')
+#print input_dataframe['Continent']
+#print input_dataframe[0:10]
+
+# create connection object
+con = lite.connect('getting_started.db')
+
+with con:
+    # create cursor object
+    cur = con.cursor()
+#    cur.execute("INSERT INTO cities VALUES('Washington', 'DC')")
+#    cur.execute("INSERT INTO cities VALUES('Houston', 'TX')")
+#    cur.execute("INSERT INTO weather VALUES('Washington', 2013, 'July', 'January', 45)")
+#    cur.execute("INSERT INTO weather VALUES('Houston', 2013, 'July', 'January', 52)")
+    cur.execute("SELECT * FROM cities")
+    
+    rows = cur.fetchall()
+#    for row in rows:
+#        print row
+    cols = [desc[0] for desc in cur.description]
+    df = pd.DataFrame(rows)

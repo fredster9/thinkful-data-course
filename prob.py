@@ -6,10 +6,6 @@ Created on Wed Mar 25 20:01:17 2015
 
 Challenge: Write a script called "prob.py" that outputs frequencies, as well as creates and saves a boxplot, a histogram, and a QQ-plot for the data in this lesson. Make sure your plots have names that are reasonably descriptive.
 
-frequencies
-boxplot
-histogra
-qqplot
 """
 
 import matplotlib.pyplot as plt

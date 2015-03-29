@@ -8,7 +8,6 @@ Created on Fri Mar 27 20:36:39 2015
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 import statsmodels.api as sm
 
 
@@ -33,11 +32,11 @@ ld['FICO.Range'] = ld['FICO.Range'].map(lambda x: x.split('-'))
 ld['FICO.Range'] = ld['FICO.Range'].astype(str)
 ld['FICO.Score'] = ld['FICO.Range'].map(lambda x: int(x[2:5]))
 
-#plt.figure()
-#graph = ld['FICO.Low'].hist()
-#plt.show()
+plt.figure()
+graph = ld['FICO.Score'].hist()
+plt.show()
 
-#a = pd.scatter_matrix(ld, alpha = 0.5, figsize=(10,10), diagonal="hist")
+a = pd.scatter_matrix(ld, alpha = 0.5, figsize=(10,10), diagonal="hist")
 
 ## Doing the linear regression
 intrate = ld['Interest.Rate']
@@ -59,20 +58,16 @@ X = sm.add_constant(x) # add_constants appends col of ones to array if prepend =
 model = sm.OLS(y,X) # OLS = ordinary least squares model
 f = model.fit() # fit the model
 
+print 'F PARAMS', f.params[:] # prints everything
+
 # Output the results
-print 'Coefficients: ', f.params[0:2]
-print 'Intercept: ', f.params[2]
+print 'Coefficients: ', f.params[1:3]
+print 'Intercept: ', f.params[0]
 print 'P-Values: ', f.pvalues
 print 'R-Squared: ', f.rsquared
 
-''' Results
-Coefficients:  [ 72.88279832  -0.08844242]
-Intercept:  0.000210747768548
-P-Values:  [  0.00000000e+000   0.00000000e+000   5.96972978e-203]
-R-Squared:  0.656632624649 
-'''
-
-
+corr_table = ld.corr()
+print corr_table
 
 
 

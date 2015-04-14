@@ -69,6 +69,7 @@ print 'R-Squared: ', f.rsquared
 corr_table = ld.corr()
 print corr_table
 
+ld.to_csv('loansData_clean.csv', header=True, index=False)
 
 
 

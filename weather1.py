@@ -36,7 +36,7 @@ cities = { "Chicago": '41.837551,-87.681844',
             "New York": '40.663619,-73.938589'
         }
         
-####temp_dict = {'date': ['city', 'max_temp']}
+###temp_dict = {'date': ['city', 'max_temp']}
 temp_dict = {}
 
 for k,v in cities.iteritems():
@@ -53,7 +53,6 @@ for k,v in cities.iteritems():
         max_temp = rj['daily']['data'][0]['apparentTemperatureMax']
         print "on %s max temp in %s was %s" % (start_date,  k, max_temp)
         temp_dict.setdefault(start_date.strftime('%Y%m%d'),[]).append([k, max_temp])
-        temp_dict.setdefault(start_date),[].append([k, max_temp])
         day_counter -= 1
 
 #pdb.set_trace()
@@ -97,3 +96,13 @@ city_zip = zip(*city_change)
 winner = map(max, city_zip)
 
 print "The city with the biggest change is %s, with a total change of %s degrees" % (winner[0], winner[1])
+        
+## Other analsysis: Range, variance, mean
+
+col_count = 0
+for col in df.columns:
+    print "For the city of ", df.columns[col_count]
+    print "Range = ", max(df[col]) - min(df[col])
+    print "Mean = ", float("{0:.2f}".format(df[col].mean()))
+    print "Variance = ", float("{0:.2f}".format(df[col].var()))
+    col_count += 1

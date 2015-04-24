@@ -8,7 +8,7 @@ TIME should either be a UNIX time (that is, seconds since midnight GMT on 1 Jan 
 API CALL FORMAT
 https://api.forecast.io/forecast/APIKEY/LATITUDE,LONGITUDE,TIME
 
-@author: fred
+@author:fred
 """
 
 import requests
@@ -97,7 +97,7 @@ winner = map(max, city_zip)
 
 print "The city with the biggest change is %s, with a total change of %s degrees" % (winner[0], winner[1])
         
-## Other analsysis: Range, variance, mean
+# Other analsysis: Range, variance, mean
 
 col_count = 0
 for col in df.columns:
@@ -106,3 +106,6 @@ for col in df.columns:
     print "Mean = ", float("{0:.2f}".format(df[col].mean()))
     print "Variance = ", float("{0:.2f}".format(df[col].var()))
     col_count += 1
+    
+df.plot()
+df.hist()
